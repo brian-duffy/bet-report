@@ -1,0 +1,19 @@
+# Log files
+*.log
+# Build dirs
+.gradle/
+**/gradle/
+**/gradlew
+**/gradlew.bat
+build/
+bin/
+*.class
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+# Unit test reports
+*.xml
