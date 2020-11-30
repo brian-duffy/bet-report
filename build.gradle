@@ -1,0 +1,98 @@
+// :: backend
+
+//--------------------------------------
+// Project Build script
+//--------------------------------------
+
+buildscript {
+    //--------------------------------------
+    // Define the library versions
+    //--------------------------------------
+    ext {
+        assertJVersion = "3.18.1"
+        jacksonVersion = "2.10.2"
+        jaxbVersion = "1.3.5"
+        junitVersion = "4.13.1"
+        guavaVersion = "30.0-jre"
+        gradleLombokVersion = "3.1.0"
+        restAssuredVersion = "4.3.2"
+        springBootVersion = "2.4.0"
+        springTestVersion = "5.3.1"
+        springDocVersion = "1.5.0"
+        springDependencyVersion = "1.0.10.RELEASE"
+        logbackVersion = "1.2.3"
+        univocityParser = "2.9.0"
+        yamlValidatorVersion = "1.5.0"
+    }
+}
+
+plugins {
+    id "org.springframework.boot" version "${springBootVersion}" apply(false)
+    id 'io.spring.dependency-management' version "${springDependencyVersion}"
+    id "io.franzbecker.gradle-lombok" version "${gradleLombokVersion}"
+    id "com.github.jacobono.jaxb" version "${jaxbVersion}"
+    id "at.zierler.yamlvalidator" version "${yamlValidatorVersion}" apply(false)
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations {
+    published
+}
+
+// Apply the following settings ALL sub-projects
+subprojects {
+
+    //--------------------------------------
+    // Define the repository
+    //--------------------------------------
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile) {
+        options.fork = true
+        options.debug = true
+        options.encoding = 'UTF-8'
+    }
+
+    //--------------------------------------
+    // Plugins
+    //--------------------------------------
+    apply plugin: 'idea'
+    apply plugin: 'io.franzbecker.gradle-lombok'
+    apply plugin: 'java'
+
+    //--------------------------------------
+    // Set the JVM version
+    //--------------------------------------
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    //--------------------------------------
+    // Dependency Management
+    //--------------------------------------
+    dependencies {
+        compile("org.springdoc:springdoc-openapi-ui:${rootProject.ext.springDocVersion}")
+        compile("com.google.guava:guava:${rootProject.ext.guavaVersion}")
+        compile("org.springframework.boot:spring-boot-starter-web:${rootProject.ext.springBootVersion}")
+        compile("io.spring.gradle:dependency-management-plugin:${rootProject.ext.springDependencyVersion}")
+        compile("org.springframework.boot:spring-boot-starter-validation:${rootProject.ext.springBootVersion}")
+    }
+
+
+    //--------------------------------------
+    // Static code analysis
+    //--------------------------------------
+    apply from: "${rootProject.projectDir}/gradle/static-analysis.gradle"
+
+    //--------------------------------------
+    // Test dependencies
+    //--------------------------------------
+    apply from: "${rootProject.projectDir}/gradle/unit-tests.gradle"
+}
+

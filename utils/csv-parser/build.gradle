@@ -1,0 +1,4 @@
+dependencies {
+    compile 'com.univocity:univocity-parsers:2.9.0'
+    compile project(':utils:exception-utils')
+}

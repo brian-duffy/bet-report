@@ -1,0 +1,7 @@
+csv:
+  configuration:
+    trimFields: true
+
+springdoc:
+  swagger-ui:
+    path: /

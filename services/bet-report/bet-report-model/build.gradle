@@ -1,0 +1,4 @@
+// :: backend :: services :: bet-report :: bet-report-model
+dependencies {
+    compile("com.univocity:univocity-parsers:${rootProject.ext.univocityParser}")
+}

@@ -1,0 +1,5 @@
+// :: backend :: utils :: test-data
+
+dependencies {
+    compile project(":services:bet-report:bet-report-model")
+}

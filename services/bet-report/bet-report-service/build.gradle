@@ -1,0 +1,14 @@
+// :: backend :: services :: bet-report :: bet-report-service
+apply plugin: 'org.springframework.boot'
+
+group = 'com.bet'
+version = "report"
+
+dependencies {
+    compile project(":configuration")
+    compile project(":utils:csv-parser")
+    compile project(":services:bet-report:bet-report-model")
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    compile("com.google.guava:guava:${rootProject.ext.guavaVersion}")
+}

@@ -1,0 +1,17 @@
+rootProject.name = 'bet-report'
+
+//-----------------------------------------------
+// Define the multi-project structure
+//-----------------------------------------------
+
+// Config
+include ":configuration"
+
+// Services
+include ":services:bet-report:bet-report-service"
+include ":services:bet-report:bet-report-model"
+
+// Utils
+include ":utils:csv-parser"
+include ":utils:exception-utils"
+include ":utils:test-data"
