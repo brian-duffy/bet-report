@@ -1,0 +1,17 @@
+//--------------------------------------
+// Dependency Management
+//--------------------------------------
+dependencies {
+    testImplementation("org.assertj:assertj-core:${rootProject.ext.assertJVersion}")
+    testImplementation("junit:junit:${rootProject.ext.junitVersion}")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.ext.springBootVersion}")
+    testCompile("io.rest-assured:rest-assured:${rootProject.ext.restAssuredVersion}")
+    testCompile project(":utils:test-data")
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+    maxHeapSize = "2048m"
+}

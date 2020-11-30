@@ -2,9 +2,6 @@
 *.log
 # Build dirs
 .gradle/
-**/gradle/
-**/gradlew
-**/gradlew.bat
 build/
 bin/
 *.class

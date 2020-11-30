@@ -1,0 +1,38 @@
+//--------------------------------------
+// Checkstyle
+//--------------------------------------
+
+apply plugin: 'checkstyle'
+
+check {
+
+    checkstyle {
+        toolVersion '8.37'
+        configFile file("${rootProject.projectDir}\\gradle\\rules\\checkstyle\\checkstyle.xml")
+        configProperties = ["suppressionFile": file("${rootProject.projectDir}\\gradle\\rules\\checkstyle\\suppressions.xml")]
+    }
+    checkstyleMain {
+        source = sourceSets.main.allSource
+        maxErrors = 0
+        maxWarnings = 0
+        ignoreFailures = false
+    }
+
+}
+
+
+//--------------------------------------
+// YAML Validator
+//--------------------------------------
+
+if (project.file('src/main/resources').exists()) {
+    apply plugin: "at.zierler.yamlvalidator"
+
+    yamlValidator {
+        searchPaths = ['src/main/resources/']
+        allowDuplicates = false
+        searchRecursive = true
+    }
+
+    check.dependsOn validateYaml
+}
