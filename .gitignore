@@ -11,6 +11,3 @@ bin/
 *.iws
 *.iml
 *.ipr
-
-# Unit test reports
-*.xml
